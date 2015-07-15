@@ -13,9 +13,8 @@ import os
 BASE_DIR = os.path.join(
     os.path.dirname(os.path.dirname(__file__)), 'exampleproject')
 
-# just are little hack for import my light_draft module
 import sys
-sys.path.append(BASE_DIR)
+sys.path.append(os.path.dirname(BASE_DIR))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -42,6 +41,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'blog',
+
+    'django_admin_actions',
 )
 
 MIDDLEWARE_CLASSES = (

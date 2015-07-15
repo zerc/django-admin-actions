@@ -1,4 +1,16 @@
-import setuptools
+# coding: utf-8
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
+
+with open('README.rst') as readme_file:
+    readme = readme_file.read()
+
+
+requirements = [
+    'Django>=1.5.1',
+]
 
 setuptools.setup(
     name="django-admin-actions",
@@ -8,19 +20,25 @@ setuptools.setup(
     author="Vladimir Savin",
     author_email="zero13cool@yandex.ru",
 
-    description="Extension for action system of django's admin with some useful boilerplate stuff",
-    long_description=open('README.rst').read(),
+    description=("Extension for action system of django's admin with some "
+                 "useful boilerplate stuff"),
+    long_description=readme,
 
-    packages=setuptools.find_packages(),
+    packages=[
+        'django_admin_actions',
+    ],
+    package_dir={'django_admin_actions':
+                 'django_admin_actions'},
 
-    install_requires=[],
+    install_requires=requirements,
 
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4',
     ],
 )

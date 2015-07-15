@@ -1,0 +1,40 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<div class="change_fields">
+    <h1>{{ view.short_description }}</h1>
+    <form name="change_fields_form" action="" method="post">
+        {% csrf_token %}
+
+        <div class="module" style="padding:10px;">
+            <p style="padding:0 0 10px 0;color:#aeaeae;">
+                Help text
+            </p>
+            <div style="margin-top:-15px;margin-bottom:15px;">
+                {% for f in form.visible_fields %}
+                    <div class="form-row" style="{% if not forloop.counter|divisibleby:2 %}margin-top:15px;{% endif %}">
+                        <label>{{ f.label|capfirst }} {{ f }}</label>
+                    </div>
+                {% endfor %}
+
+                {% for f in form.hidden_fields %}
+                    {{ f }}
+                {% endfor %}
+            </div>
+
+            <input style="float:left;margin-bottom:15px;" type="submit" name="apply" class="default" value="Применить" />
+            <hr>
+
+            <h4>Affected models:</h4>
+
+            <ul>
+                  {% for item in items %}
+                    <li>{{ item }}</li>
+                  {% endfor %}
+            </ul>
+
+            <input type="hidden" name="action" value="change_fields" />
+        </div>
+    </form>
+</div>
+{% endblock %}
